@@ -1,4 +1,6 @@
+import { ToastContainer } from 'react-toastify';
 import { Inter } from "next/font/google";
+import 'react-toastify/dist/ReactToastify.css';
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -15,6 +17,7 @@ export default function RootLayout({ children }) {
         <div className="dark w-full min-h-screen bg-[#181820]">
           {children}
         </div>
+        <ToastContainer draggable theme="dark" />
       </body>
     </html>
   );
