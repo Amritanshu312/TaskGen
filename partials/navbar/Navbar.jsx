@@ -31,8 +31,8 @@ const Navbar = () => {
   ), []);
 
   return (
-    <div className="w-full absolute h-16 bg-[#21212b] top-0 left-0 justify-between px-12 flex items-center">
-      <div className="flex gap-6 items-center">
+    <div className="w-full absolute h-16 bg-[#21212b] top-0 left-0 justify-between px-8 flex items-center shadow-md">
+      <div className="flex gap-8 items-center">
         <DashboardIcon />
         <CollectionsIcon />
       </div>
