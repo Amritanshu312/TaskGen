@@ -14,7 +14,7 @@ export default function AuthLayout({ children }) {
   }, []);
 
   return (
-    <div className="w-full h-screen flex justify-center items-center">
+    <div className="w-full min-h-screen flex justify-center items-center">
       <div className="w-full max-w-96">
         <div className="text-[#dfdfe0] text-4xl font-semibold text-center mb-12">{pathname === "signin" ? "Sign In" : "Sign Up"}.</div>
 
