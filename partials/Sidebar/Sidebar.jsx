@@ -1,6 +1,6 @@
 const Sidebar = () => {
   return (
-    <div className="h-full w-64 bg-[#21212b] py-24 pl-8">
+    <div className="h-full w-80 bg-[#21212b] py-24 pl-8">
       <div className="text-[#cacacd] font-['poppins'] font-medium">Collections</div>
 
       <div className="mt-7 gap-8 flex flex-col">
