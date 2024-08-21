@@ -1,5 +1,4 @@
-import CollectionItem from "./CollectionItem"
-
+import CollectionItem from "./collectionsItem/CollectionItem"
 
 
 const Collections = () => {

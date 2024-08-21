@@ -1,4 +1,4 @@
-import Collections from "./collections/Collections"
+import Collections from "./Collections"
 
 const DailyOverview = () => {
   return (
