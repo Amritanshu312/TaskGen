@@ -1,6 +1,5 @@
 "use client";
 import { createContext, useEffect, useState, useMemo, useContext } from "react";
-import Loading from "@/components/ui/loading/Loading";
 import { doc, getDoc } from "firebase/firestore";
 import { auth, db } from "@/firebase/config";
 
@@ -17,7 +16,7 @@ export const UserState = (props) => {
         const docRef = doc(db, "users", user.uid);
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
-          setFirebaseUserInfo(docSnap.data());
+          setUserInfo(docSnap.data());
         } else {
           console.log("No such document!");
         }

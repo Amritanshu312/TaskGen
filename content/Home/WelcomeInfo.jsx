@@ -1,22 +1,18 @@
 "use client"
+import { useUserContext } from "@/context/UserInfo"
 import { auth } from "@/firebase/config"
 import { useEffect, useState } from "react"
 
 const WelcomeInfo = () => {
-  const [username, setUsername] = useState("Guest")
-
-  useEffect(() => {
-    auth.onAuthStateChanged(user => {
-      if (user) {
-        setUsername(user?.displayName)
-      }
-    })
-  }, [])
+  const { userInfo: { name }, loading } = useUserContext()
+  // const [username, setUsername] = useState("Guest")
 
   return (
     <div className="text-4xl tracking-normal text-[#dcdcdf] font-['poppins'] font-medium flex flex-col gap-2">
       <div>Good morning,</div>
-      <div className="ml-1 text-[#efeff4]">{username.charAt(0).toUpperCase() + username.slice(1)}</div>
+      <div className="ml-1 text-[#efeff4]">
+        {loading ? "Guest" : name.charAt(0).toUpperCase() + name.slice(1)}
+      </div>
     </div>
   )
 }

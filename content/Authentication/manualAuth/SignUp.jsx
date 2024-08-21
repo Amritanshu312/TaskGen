@@ -42,7 +42,7 @@ const SignUp = () => {
       const { result, error } = await signUpWithEmail(email, password);
 
       createUser(result.user.uid, {
-        displayName: result.user.uid,
+        displayName: username,
         email,
       })
 
