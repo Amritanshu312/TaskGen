@@ -8,7 +8,7 @@ import Link from "next/link";
 
 const BottomBar = () => {
   const { w, h } = useWindowDimensions()
-  return (
+  return w <= 635 ? (
     <div className="fixed w-full h-20 bottom-0 flex bg-[#181820] items-center justify-between px-8 text-2xl text-[#a1a1a9]">
       <Link href={"/"} className="cursor-pointer hover:text-white"><RiDashboardFill /></Link>
       <Link href={"/collections"} className="cursor-pointer hover:text-white"><MdOutlineEventNote /></Link>
@@ -16,7 +16,7 @@ const BottomBar = () => {
       <div className="cursor-pointer hover:text-white"><IoSearch /></div>
       <div className="cursor-pointer hover:text-white"><FaRegBell /></div>
     </div>
-  )
+  ) : null
 }
 
 export default BottomBar
