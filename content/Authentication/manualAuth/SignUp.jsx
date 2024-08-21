@@ -4,8 +4,10 @@ import Input from "../components/Buttons/Input"
 import { signUpWithEmail } from "@/firebase/auth"
 import Link from "next/link"
 import { toast } from "react-toastify"
+import { createUser } from "@/utils/userHandling"
 
 const SignUp = () => {
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [Cpassword, setCPassword] = useState("");
@@ -38,6 +40,12 @@ const SignUp = () => {
     try {
       // Proceed with the sign-up
       const { result, error } = await signUpWithEmail(email, password);
+
+      createUser(result.user.uid, {
+        displayName: result.user.uid,
+        email,
+      })
+
       if (error) {
         if (error.code === "auth/email-already-in-use") {
           toast.error("Email is already in use.");
@@ -59,6 +67,12 @@ const SignUp = () => {
 
   return (
     <form className="flex flex-col gap-4 mt-2 relative z-10" onSubmit={onSubmit}>
+      <Input
+        type={"text"}
+        placeholder={"Username"}
+        onchange={setUsername}
+        value={username} />
+
       <Input
         type={"email"}
         placeholder={"Email"}

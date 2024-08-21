@@ -16,7 +16,7 @@ const Profile = () => {
 
   return userInfo === "loading" ? (
     <div className="bg-[#49495f] h-[35px] w-[35px] rounded-full"></div>
-  ) : userInfo ? (
+  ) : userInfo?.photoURL ? (
     <Image src={userInfo.photoURL} width={35} height={35} alt="profile" className="object-cover rounded-full cursor-pointer" />
   ) : (
     <Link href="/auth/signin" className="bg-[#49495f] h-[35px] w-[35px] rounded-full flex items-center justify-center text-xs cursor-pointer">

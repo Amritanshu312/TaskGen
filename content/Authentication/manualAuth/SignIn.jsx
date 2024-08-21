@@ -17,6 +17,7 @@ const SignIn = () => {
     }
 
     const { result, error } = await signInWithEmail(email, password);
+
     if (error) {
       if (error.code === "auth/wrong-password") {
         toast.error("Incorrect password. Please try again.");
@@ -32,6 +33,8 @@ const SignIn = () => {
       console.log("Sign in successful:", result);
       toast.success("Welcome back!");
     }
+
+
   };
 
   return (

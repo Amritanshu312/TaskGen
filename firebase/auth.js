@@ -1,5 +1,6 @@
 "use client"
 
+import { createUser } from "@/utils/userHandling";
 import { auth, facebookProvider, googleProvider } from "./config";
 import {
   createUserWithEmailAndPassword,
@@ -30,6 +31,11 @@ export async function signInWithGoogle() {
     error = null;
   try {
     result = await signInWithPopup(auth, googleProvider);
+
+    createUser(result.user.uid, {
+      displayName: result.user.uid,
+      ...result.user,
+    })
   } catch (e) {
     error = e;
   }
