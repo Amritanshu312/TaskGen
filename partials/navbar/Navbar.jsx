@@ -19,13 +19,13 @@ const Navbar = () => {
     <Link href={"/"} className={clsx("flex gap-2 items-center text-lg cursor-pointer duration-100", { "text-white": pathname === "/" })}>
       <RiDashboardFill /> <span className="text-base">Dashboard</span>
     </Link>
-  ), []);
+  ), [pathname]);
 
   const CollectionsIcon = useCallback(() => (
     <Link href={"/collections"} className={clsx("flex gap-2 items-center text-lg cursor-pointer duration-100", { "text-white": pathname === "/collections" })}>
       <MdOutlineEventNote /> <span className="text-base">Collections</span>
     </Link>
-  ), []);
+  ), [pathname]);
 
   return (
     <div className="w-full fixed z-10 h-16 bg-[#21212b] top-0 left-0 justify-between px-8 flex items-center shadow-md max-[635px]:hidden">

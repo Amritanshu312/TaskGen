@@ -1,4 +1,4 @@
-const Input = ({ type, placeholder, onchange, value }) => {
+const Input = ({ type, placeholder, onchange, value, required }) => {
   return (
     <div className="flex items-center gap-2 border-[3px] font-['poppins'] py-1 text-base border-[#31313e] justify-center rounded-2xl text-[#dcdcdc] px-4">
       <input
@@ -7,6 +7,7 @@ const Input = ({ type, placeholder, onchange, value }) => {
         placeholder={placeholder}
         onChange={e => onchange(e.target.value)}
         value={value}
+        required={required === true || false}
       />
 
     </div>

@@ -16,7 +16,7 @@ const SignUp = () => {
     event.preventDefault();
 
     // Check if all fields are filled
-    if (!email || !password || !Cpassword) {
+    if (!email || !password || !Cpassword || !username) {
       return toast.error("All fields are required.");
     }
 
@@ -32,19 +32,15 @@ const SignUp = () => {
     }
 
     // Validate password strength (e.g., minimum 8 characters, at least one number)
-    // const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
-    // if (!passwordRegex.test(password)) {
-    //   return toast.error("Password must be at least 8 characters long and includes at least one uppercase letter, one lowercase letter, and one number.");
-    // }
+    const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+    if (!passwordRegex.test(password)) {
+      return toast.error("Password must be at least 8 characters long and includes at least one uppercase letter, one lowercase letter, and one number.");
+    }
 
     try {
       // Proceed with the sign-up
       const { result, error } = await signUpWithEmail(email, password);
 
-      createUser(result.user.uid, {
-        displayName: username,
-        email,
-      })
 
       if (error) {
         if (error.code === "auth/email-already-in-use") {
@@ -54,6 +50,10 @@ const SignUp = () => {
           toast.error("Sign up failed.");
         }
       } else {
+        createUser(result.user.uid, {
+          displayName: username,
+          email,
+        })
         console.log("Sign up successful:", result);
         toast.success("Welcome aboard!");
       }
@@ -71,25 +71,29 @@ const SignUp = () => {
         type={"text"}
         placeholder={"Username"}
         onchange={setUsername}
-        value={username} />
+        value={username}
+        required />
 
       <Input
         type={"email"}
         placeholder={"Email"}
         onchange={setEmail}
-        value={email} />
+        value={email}
+        required />
 
       <Input
         type={"password"}
         placeholder={"Password"}
         onchange={setPassword}
-        value={password} />
+        value={password}
+        required />
 
       <Input
         type={"password"}
         placeholder={"Confirm Password"}
         onchange={setCPassword}
-        value={Cpassword} />
+        value={Cpassword}
+        required />
 
       <input
         type="submit"

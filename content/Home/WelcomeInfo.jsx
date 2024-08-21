@@ -5,7 +5,6 @@ import { useEffect, useState } from "react"
 
 const WelcomeInfo = () => {
   const { userInfo: { name }, loading } = useUserContext()
-  // const [username, setUsername] = useState("Guest")
 
   return (
     <div className="text-4xl tracking-normal text-[#dcdcdf] font-['poppins'] font-medium flex flex-col gap-2">
