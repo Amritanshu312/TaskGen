@@ -1,3 +1,4 @@
+import CollectionsSection from "@/content/Collections/Collections"
 import { BsThreeDots } from "react-icons/bs"
 
 const Collections = () => {
@@ -13,6 +14,7 @@ const Collections = () => {
             <div className="cursor-pointer text-xl text-[#bdbdc0]"><BsThreeDots /></div>
           </div>
 
+          <CollectionsSection />
 
         </div>
 
