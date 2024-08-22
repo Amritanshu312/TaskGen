@@ -5,6 +5,7 @@ import BottomBar from '@/partials/bottomBar/BottomBar';
 import Navbar from '@/partials/navbar/Navbar';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
+import { AppProgressBar as ProgressBar } from "next-nprogress-bar";
 
 
 export default function RootLayout({ children }) {
@@ -20,6 +21,12 @@ export default function RootLayout({ children }) {
       <Navbar />
       {children}
       <BottomBar />
+
+      <ProgressBar
+        height="3px"
+        color="#494968"
+        options={{ showSpinner: true }}
+      />
     </UserState>
   );
 }
