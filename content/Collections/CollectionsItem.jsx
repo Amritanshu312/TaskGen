@@ -1,6 +1,6 @@
 import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
-
+import { motion } from "framer-motion"
 
 const CollectionsItem = () => {
   const bgcolor = "#fa76a0"
@@ -9,7 +9,10 @@ const CollectionsItem = () => {
   const title = "school is the best plae  to study you know"
 
   return (
-    <div className="w-full h-44 rounded-3xl shadow-md bg-[#21212b] px-6 py-4 flex flex-col justify-between font-['poppins']">
+    <motion.div variants={{ hidden: { opacity: 0, scale: 0 }, show: { opacity: 1, scale: 1 } }}
+      className="w-full h-44 rounded-3xl shadow-md bg-[#21212b] px-6 py-4 flex flex-col justify-between font-['poppins']"
+    >
+
       <div className={`bg-[${bgcolor}] w-11 h-11 rounded-2xl flex items-center justify-center text-xl`}>S</div>
 
       <div className="flex justify-between items-end">
@@ -28,7 +31,7 @@ const CollectionsItem = () => {
 
       </div>
 
-    </div>
+    </motion.div>
   )
 }
 

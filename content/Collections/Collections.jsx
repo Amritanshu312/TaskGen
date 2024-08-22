@@ -4,6 +4,7 @@ import clsx from "clsx"
 import { useState } from "react"
 import CollectionsItem from "./CollectionsItem"
 import Create from "./Create"
+import { motion } from "framer-motion"
 
 const CollectionsSection = () => {
   const [active, setActive] = useState("All Collections")
@@ -25,14 +26,27 @@ const CollectionsSection = () => {
       </div>
 
 
-      <div className="mt-10 mb-24 grid grid-cols-[repeat(auto-fit,minmax(170px,1fr))] gap-[20px]">
+      <motion.div
+        className="mt-10 mb-24 grid grid-cols-[repeat(auto-fit,minmax(170px,1fr))] gap-[20px]"
+        variants={{
+          hidden: { opacity: 0 },
+          show: {
+            opacity: 1,
+            transition: {
+              staggerChildren: 0.1
+            }
+          }
+        }}
+        initial="hidden"
+        animate="show"
+      >
         <CollectionsItem />
         <CollectionsItem />
         <CollectionsItem />
         <CollectionsItem />
         <CollectionsItem />
         <Create />
-      </div>
+      </motion.div>
 
     </div>
   )
