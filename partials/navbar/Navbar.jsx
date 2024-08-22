@@ -48,7 +48,7 @@ const Navbar = () => {
         <Profile />
       </div>
 
-      {showCreateCollection && <CreateCollection onclick={setShowCreateCollections} />}
+      {showCreateCollection && <CreateCollection onclick={setShowCreateCollections} isVisible={showCreateCollection} />}
 
     </div>
   );

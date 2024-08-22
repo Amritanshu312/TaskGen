@@ -2,17 +2,25 @@ import { useState } from "react"
 import { motion } from "framer-motion"
 
 const CreateCollection = ({ onclick }) => {
-  const [title, setTitle] = useState("")
+  const [title, setTitle] = useState("");
 
-  const reset = () => setTitle(""); onclick(false)
+  const reset = () => {
+    setTitle("");
+    onclick(false);
+  };
 
   const addCollection = () => {
-    console.log("add collection called");
-  }
+    console.log("Add collection called");
+    // Add your collection logic here
+  };
 
   return (
     <>
-      <motion.div initial={{ zoom: 0 }} animate={{ zoom: '100%' }} className="w-full max-w-[32rem] bg-[#21212b] rounded-2xl border border-[#262633] top-28 fixed z-10 left-1/2 -translate-x-1/2 py-6 px-6">
+      <motion.div
+        initial={{ scale: 0, translateX: '-50%' }}
+        animate={{ scale: 1, translateX: '-50%' }}
+        className="w-full max-w-[32rem] bg-[#21212b] rounded-2xl border border-[#262633] top-28 fixed z-10 left-1/2 py-6 px-6"
+      >
         <div className="border-2 border-[#2d2d38] rounded-xl">
           <input
             type="text"
