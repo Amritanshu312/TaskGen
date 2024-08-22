@@ -1,14 +1,31 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client"
 
 import clsx from "clsx"
-import { useState } from "react"
+import { Fragment, useEffect, useState } from "react"
 import CollectionsItem from "./CollectionsItem"
 import Create from "./Create"
 import { motion } from "framer-motion"
+import { getUserCollections } from "@/utils/CollectionsHandling"
+import { useUserContext } from "@/context/UserInfo"
 
 const CollectionsSection = () => {
-  const [active, setActive] = useState("All Collections")
+  const { userInfo, loading } = useUserContext()
+  const [data, setData] = useState([])
+  console.log(data);
 
+  useEffect(() => {
+    const fetchCollections = async () => {
+      const collections = await getUserCollections(userInfo.uid)
+      setData(collections);
+    }
+
+    if (!loading) {
+      fetchCollections()
+    }
+  }, [userInfo])
+
+  const [active, setActive] = useState("All Collections")
   const allCollections = ["Favourites", "All Collections"]
 
   return (
@@ -40,14 +57,11 @@ const CollectionsSection = () => {
         initial="hidden"
         animate="show"
       >
-        <CollectionsItem />
-        <CollectionsItem />
-        <CollectionsItem />
-        <CollectionsItem />
-        <CollectionsItem />
+        {data.map((i, _) => <Fragment key={_}><CollectionsItem {...i} /></Fragment>)}
         <Create />
       </motion.div>
 
+      <button onClick={() => setStatechange(prev => !prev)}>reload</button>
     </div>
   )
 }

@@ -14,7 +14,6 @@ import CreateCollection from "@/components/CreateCollection";
 
 const Navbar = () => {
   const pathname = usePathname()
-  const [showCreateCollection, setShowCreateCollections] = useState(false)
 
   const DashboardIcon = useCallback(() => (
     <Link href={"/"} className={clsx("flex gap-2 items-center text-lg cursor-pointer duration-100", { "text-white": pathname === "/" })}>
@@ -36,7 +35,7 @@ const Navbar = () => {
       </div>
 
       <div className="flex gap-4 items-center">
-        <div className="w-8 h-8 bg-[linear-gradient(234deg,#fc9d7e,#f76ba8,#ce51c7,#c14cd1)] rounded-xl flex items-center justify-center text-2xl cursor-pointer" onClick={() => setShowCreateCollections(prev => !prev)}>+</div>
+        <div className="w-8 h-8 bg-[linear-gradient(234deg,#fc9d7e,#f76ba8,#ce51c7,#c14cd1)] rounded-xl flex items-center justify-center text-2xl cursor-pointer">+</div>
 
         <div className="text-xl cursor-pointer">
           <IoSearch />
@@ -48,7 +47,6 @@ const Navbar = () => {
         <Profile />
       </div>
 
-      {showCreateCollection && <CreateCollection onclick={setShowCreateCollections} isVisible={showCreateCollection} />}
 
     </div>
   );

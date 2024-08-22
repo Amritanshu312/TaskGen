@@ -1,17 +1,25 @@
+"use client"
 import { useState } from "react"
 import { motion } from "framer-motion"
+import { useUserContext } from "@/context/UserInfo";
+import { toast } from 'react-toastify'
+import { createCollection } from "@/utils/CollectionsHandling";
+import ColorPicker from "./colorPicker";
 
 const CreateCollection = ({ onclick }) => {
   const [title, setTitle] = useState("");
+  const { userInfo } = useUserContext()
 
   const reset = () => {
     setTitle("");
     onclick(false);
   };
 
-  const addCollection = () => {
+  const addCollection = async () => {
     console.log("Add collection called");
-    // Add your collection logic here
+    let result = await createCollection(userInfo, title)
+    if (result === "success") return toast("Collection added Successfully")
+    if (result === "error") return toast.error("Error saving Collection");
   };
 
   return (
@@ -29,6 +37,14 @@ const CreateCollection = ({ onclick }) => {
             placeholder="Collection Name"
             className="w-full h-full bg-transparent outline-none border-none px-4 py-4"
           />
+        </div>
+
+        <div className=" mt-6">
+          <div>Icon Background</div>
+
+          <div>
+            <ColorPicker />
+          </div>
         </div>
 
         <div className="flex gap-4 mt-6">
