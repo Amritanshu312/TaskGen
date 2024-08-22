@@ -6,24 +6,10 @@ import { Fragment, useEffect, useState } from "react"
 import CollectionsItem from "./CollectionsItem"
 import Create from "./Create"
 import { motion } from "framer-motion"
-import { getUserCollections } from "@/utils/CollectionsHandling"
 import { useUserContext } from "@/context/UserInfo"
 
 const CollectionsSection = () => {
-  const { userInfo, loading } = useUserContext()
-  const [data, setData] = useState([])
-  console.log(data);
-
-  useEffect(() => {
-    const fetchCollections = async () => {
-      const collections = await getUserCollections(userInfo.uid)
-      setData(collections);
-    }
-
-    if (!loading) {
-      fetchCollections()
-    }
-  }, [userInfo])
+  const { collectionsData } = useUserContext()
 
   const [active, setActive] = useState("All Collections")
   const allCollections = ["Favourites", "All Collections"]
@@ -57,7 +43,7 @@ const CollectionsSection = () => {
         initial="hidden"
         animate="show"
       >
-        {data.map((i, _) => <Fragment key={_}><CollectionsItem {...i} /></Fragment>)}
+        {collectionsData.map((i, _) => <Fragment key={_}><CollectionsItem {...i} /></Fragment>)}
         <Create />
       </motion.div>
 

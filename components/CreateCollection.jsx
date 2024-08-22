@@ -9,7 +9,7 @@ import ColorPicker from "./colorPicker";
 const CreateCollection = ({ onclick }) => {
   const [title, setTitle] = useState("");
   const [color, setColor] = useState("#ff6434")
-  const { userInfo } = useUserContext()
+  const { userInfo, setCollectionsData } = useUserContext()
 
 
   const reset = () => {
@@ -18,14 +18,46 @@ const CreateCollection = ({ onclick }) => {
   };
 
   const addCollection = async () => {
-    toast.promise(
-      createCollection(userInfo, title, color),
-      {
-        pending: "Saving Collection...",
-        success: "Collection added successfully!",
-        error: "Error saving Collection",
+    try {
+      if (!title || !color) {
+        return toast.error("Add Collection Title or Color.")
       }
-    );
+
+      if (!userInfo?.uid) {
+        return toast.error("There seem to be an error recheck if you are authenticated or not.")
+      }
+
+      const collectionHash = (length = 16) => Array.from({ length }, () => 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'.charAt(Math.floor(Math.random() * 62))).join('');
+      const hash = collectionHash();
+
+      if (!hash) {
+        return toast.error("There seem to be an Internal Error.")
+      }
+
+      toast.promise(
+        createCollection(userInfo, title, color, hash),
+        {
+          pending: "Saving Collection...",
+          success: "Collection added successfully!",
+          error: "Error saving Collection",
+        }
+      );
+
+      setCollectionsData(prev => [...prev, {
+        collectionColor: color,
+        collectionName: title,
+        favourites: false,
+        hashID: hash,
+        taskFinished: 0,
+        totalTasks: 0,
+        uid: userInfo?.uid
+      }])
+      onclick(false);
+
+
+    } catch (error) {
+      return toast.error("There seem to be an Error.")
+    }
   };
 
 

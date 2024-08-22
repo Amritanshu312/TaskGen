@@ -2,7 +2,7 @@
 import { db } from "@/firebase/config";
 import { doc, setDoc, serverTimestamp, collection, query, getDocs } from "firebase/firestore";
 
-export const createCollection = async (userInfo, collectionName, Iconcolor) => {
+export const createCollection = async (userInfo, collectionName, Iconcolor, hash) => {
   if (!userInfo || typeof userInfo !== 'object') {
     throw new Error("Invalid userInfo object provided.");
   }
@@ -15,8 +15,7 @@ export const createCollection = async (userInfo, collectionName, Iconcolor) => {
 
 
   const { uid } = userInfo;
-  const collectionHash = (length = 16) => Array.from({ length }, () => 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'.charAt(Math.floor(Math.random() * 62))).join('');
-  const hash = collectionHash(); // Call collectionHash() once and reuse
+
   const color = `#${[...Array(3)].map(() => Math.floor(Math.random() * 64).toString(16).padStart(2, '0')).map((_, i, a) => Math.floor((parseInt('#17153B'.slice(1), 16) >> (16 - i * 8) & 0xFF + parseInt('#' + [...Array(3)].map(() => Math.floor(Math.random() * 64).toString(16).padStart(2, '0')).join('').slice(1), 16) >> (16 - i * 8) & 0xFF) / 2).toString(16).padStart(2, '0')).join('')}`;
 
   try {
@@ -45,7 +44,6 @@ export const createCollection = async (userInfo, collectionName, Iconcolor) => {
 
 
 export const getUserCollections = async (userId) => {
-  console.log(userId);
   if (!userId || typeof userId !== 'string') {
     throw new Error("Invalid user ID provided.");
   }

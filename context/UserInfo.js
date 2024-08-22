@@ -2,12 +2,14 @@
 import { createContext, useEffect, useState, useMemo, useContext } from "react";
 import { doc, getDoc } from "firebase/firestore";
 import { auth, db } from "@/firebase/config";
+import { getUserCollections } from "@/utils/CollectionsHandling";
 
 export const userContext = createContext();
 
 export const UserState = (props) => {
   const [userInfo, setUserInfo] = useState({});
   const [loading, setLoading] = useState(true);
+  const [collectionsData, setCollectionsData] = useState([])
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
@@ -29,14 +31,29 @@ export const UserState = (props) => {
     return () => unsubscribe();
   }, []);
 
+  useEffect(() => {
+    const fetchCollections = async () => {
+      const collections = await getUserCollections(userInfo.uid)
+      setCollectionsData(collections);
+    }
+
+    if (!loading) {
+      fetchCollections()
+    }
+  }, [userInfo, loading])
+
   // Memoize the context value to avoid unnecessary re-renders
   const contextValue = useMemo(() => ({
     userInfo,
-    loading
+    loading,
+    collectionsData,
+    setCollectionsData
   }),
     [
       userInfo,
       loading,
+      collectionsData,
+      setCollectionsData
     ]);
 
   return (
