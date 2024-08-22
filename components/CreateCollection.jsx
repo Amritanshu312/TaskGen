@@ -8,7 +8,9 @@ import ColorPicker from "./colorPicker";
 
 const CreateCollection = ({ onclick }) => {
   const [title, setTitle] = useState("");
+  const [color, setColor] = useState("#ff6434")
   const { userInfo } = useUserContext()
+
 
   const reset = () => {
     setTitle("");
@@ -16,11 +18,16 @@ const CreateCollection = ({ onclick }) => {
   };
 
   const addCollection = async () => {
-    console.log("Add collection called");
-    let result = await createCollection(userInfo, title)
-    if (result === "success") return toast("Collection added Successfully")
-    if (result === "error") return toast.error("Error saving Collection");
+    toast.promise(
+      createCollection(userInfo, title, color),
+      {
+        pending: "Saving Collection...",
+        success: "Collection added successfully!",
+        error: "Error saving Collection",
+      }
+    );
   };
+
 
   return (
     <>
@@ -43,7 +50,7 @@ const CreateCollection = ({ onclick }) => {
           <div>Icon Background</div>
 
           <div>
-            <ColorPicker />
+            <ColorPicker onChange={setColor} />
           </div>
         </div>
 

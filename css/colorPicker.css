@@ -1,0 +1,25 @@
+.popup_tabs {
+  width: 100% !important;
+  background: #21212b !important;
+  box-shadow: none !important;
+}
+
+.colorpicker,
+.colorpicker .color-picker-panel {
+  background: #21212b !important;
+}
+
+.input_rgba .input_rgba-wrap input {
+  background-color: #21212b !important;
+  box-shadow: 0px 0px 0px 2px #3232 !important;
+  color: #dbdbdb !important;
+}
+
+.input_rgba .input_rgba-wrap input:hover {
+  background-color: #21212b !important;
+}
+
+.popup_tabs-body {
+  padding: 0 !important;
+  margin-top: 16px;
+}

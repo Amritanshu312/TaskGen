@@ -2,7 +2,7 @@
 import { db } from "@/firebase/config";
 import { doc, setDoc, serverTimestamp, collection, query, getDocs } from "firebase/firestore";
 
-export const createCollection = async (userInfo, collectionName) => {
+export const createCollection = async (userInfo, collectionName, Iconcolor) => {
   if (!userInfo || typeof userInfo !== 'object') {
     throw new Error("Invalid userInfo object provided.");
   }
@@ -12,6 +12,7 @@ export const createCollection = async (userInfo, collectionName) => {
   if (!collectionName || typeof collectionName !== 'string') {
     throw new Error("Collection name must be a non-empty string.");
   }
+
 
   const { uid } = userInfo;
   const collectionHash = (length = 16) => Array.from({ length }, () => 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'.charAt(Math.floor(Math.random() * 62))).join('');
@@ -28,9 +29,10 @@ export const createCollection = async (userInfo, collectionName) => {
       totalTasks: 0,
       taskFinished: 0,
       hashID: hash,
+      favourites: false,
       createdAt: serverTimestamp(),
       collectionName: collectionName.trim(),
-      collectionColor: color,
+      collectionColor: Iconcolor || color,
     });
 
     return "success";

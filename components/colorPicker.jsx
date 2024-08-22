@@ -1,12 +1,9 @@
 import ReactGPicker from 'react-gcolor-picker';
+import "@/css/colorPicker.css"
 
+const ColorPicker = ({ onChange }) => {
 
-const ColorPicker = () => {
-  const onChange = (value) => {
-    console.log(value);
-  };
-
-  return <ReactGPicker value='red' onChange={onChange} />;
+  return <ReactGPicker value='blue' format='hex' onChange={value => onChange(value)} />;
 
 }
 

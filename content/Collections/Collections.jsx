@@ -61,7 +61,6 @@ const CollectionsSection = () => {
         <Create />
       </motion.div>
 
-      <button onClick={() => setStatechange(prev => !prev)}>reload</button>
     </div>
   )
 }
