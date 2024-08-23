@@ -7,6 +7,8 @@ import EditCollection from '@/components/Collection/EditCollection';
 import { editCollectionData } from '@/utils/CollectionsHandling';
 import { toast } from "react-toastify";
 import { useUserContext } from '@/context/UserInfo';
+import Link from 'next/link';
+import { encodeBase64ToUrlSafe, encryptSentence } from '@/utils/wordEncrypterDecrypter';
 
 const CollectionsItem = ({
   collectionColor = "#fa76a0",
@@ -101,9 +103,10 @@ const CollectionsItem = ({
 
         <div className="flex justify-between items-end">
           <div className="gap-2 flex flex-col">
-            <div className="font-medium text-xl cursor-pointer line-clamp-1 text-ellipsis overflow-hidden max-w-[120px]" title={collectionName}>
+            <Link href={`/project/${hashID}?n=${encodeBase64ToUrlSafe(encryptSentence(collectionName))}`} className="font-medium text-xl cursor-pointer line-clamp-1 text-ellipsis overflow-hidden max-w-[120px]" title={collectionName}>
               {collectionName}
-            </div>
+            </Link>
+
             <div className="text-[#bababc] text-sm">
               {taskFinished}/{totalTasks} done
             </div>

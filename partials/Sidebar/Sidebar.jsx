@@ -38,7 +38,7 @@ const Sidebar = () => {
               key={_}
               variants={{ hidden: { opacity: 0, scale: 0 }, show: { opacity: 1, scale: 1 } }}
             >
-              <Link href={`/todo/${d?.hashID}`} className="flex items-center gap-2 cursor-pointer">
+              <Link href={`/project/${d?.hashID}?n=${encryptWord(d?.collectionName)}`} className="flex items-center gap-2 cursor-pointer">
                 <div className="w-8 h-8 rounded-xl flex items-center justify-center text-lg" style={{ backgroundColor: d?.collectionColor || 'skyblue' }}>{(d?.collectionName || "").slice(0, 1).toUpperCase()}</div>
                 <div>{d?.collectionName || ""}</div>
               </Link>
