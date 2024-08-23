@@ -53,21 +53,34 @@ const CollectionsItem = ({
 
           <div className="gap-2 flex flex-col">
             <div className="font-medium text-xl cursor-pointer line-clamp-1 text-ellipsis overflow-hidden max-w-[120px]" title={title}>{title}</div>
-            <div className="text-[#bababc] text-sm">{taskdone}/{totalTask} done</div>
+            <div className="text-[#bababc] text-sm">
+              {taskdone}/{totalTask} done
+            </div>
           </div>
 
-          <CircularProgressbar value={taskdone * 100 / totalTask} className='!w-6 mb-2' strokeWidth={15} styles={buildStyles({
-            pathTransitionDuration: 0.5,
-            pathColor: bgcolor,
-            trailColor: '#33333f',
-          })}
+          <CircularProgressbar
+            value={taskdone * 100 / totalTask}
+            className='!w-6 mb-2'
+            strokeWidth={15}
+            styles={buildStyles({
+              pathTransitionDuration: 0.5,
+              pathColor: bgcolor,
+              trailColor: '#33333f',
+            })}
           />
 
         </div>
 
       </motion.div>
 
-      {isCollectionEditOpened && <EditCollection addedTitle={title} addedcolor={bgcolor} hash={hashID} onclick={setIsCollectionEditOpened} />}
+      {isCollectionEditOpened &&
+        <EditCollection
+          addedTitle={title}
+          addedcolor={bgcolor}
+          hash={hashID}
+          onclick={setIsCollectionEditOpened}
+        />
+      }
     </>
   )
 }

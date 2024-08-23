@@ -32,10 +32,10 @@ const SignUp = () => {
     }
 
     // Validate password strength (e.g., minimum 8 characters, at least one number)
-    const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
-    if (!passwordRegex.test(password)) {
-      return toast.error("Password must be at least 8 characters long and includes at least one uppercase letter, one lowercase letter, and one number.");
-    }
+    // const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+    // if (!passwordRegex.test(password)) {
+    //   return toast.error("Password must be at least 8 characters long and includes at least one uppercase letter, one lowercase letter, and one number.");
+    // }
 
     try {
       // Proceed with the sign-up

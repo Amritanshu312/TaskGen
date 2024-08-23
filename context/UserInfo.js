@@ -37,7 +37,7 @@ export const UserState = (props) => {
       setCollectionsData(collections);
     }
 
-    if (!loading) {
+    if (!loading && userInfo.uid) {
       fetchCollections()
     }
   }, [userInfo, loading])

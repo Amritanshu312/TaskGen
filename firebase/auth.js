@@ -4,6 +4,7 @@ import { createUser } from "@/utils/userHandling";
 import { auth, facebookProvider, googleProvider } from "./config";
 import {
   createUserWithEmailAndPassword,
+  getAdditionalUserInfo,
   signInWithEmailAndPassword,
   signInWithPopup
 } from "firebase/auth";
@@ -32,10 +33,12 @@ export async function signInWithGoogle() {
   try {
     result = await signInWithPopup(auth, googleProvider);
 
-    createUser(result.user.uid, {
-      displayName: result.user.uid,
-      ...result.user,
-    })
+    if (getAdditionalUserInfo(result).isNewUser) {
+      createUser(result.user.uid, {
+        displayName: result.user.uid,
+        ...result.user,
+      })
+    }
   } catch (e) {
     error = e;
   }
