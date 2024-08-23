@@ -22,16 +22,16 @@ const CollectionsItem = ({
     >
 
       <div className='flex justify-between'>
-        <div className="w-11 h-11 rounded-2xl flex items-center justify-center text-xl" style={{ background: bgcolor }}>S</div>
+        <div className="w-11 h-11 rounded-2xl flex items-center justify-center text-xl" style={{ background: bgcolor }}>{title.slice(0, 1).toUpperCase()}</div>
 
         <div className='text-xl cursor-pointer text-[#bababc] relative'>
           <div className='hover:text-white'><BsThreeDots /></div>
 
-          <div className='absolute w-max top-6 left-0 bg-[#414051] rounded-md text-sm overflow-hidden'>
+          {/* <div className='absolute w-max top-6 left-0 bg-[#414051] rounded-md text-sm overflow-hidden'>
             <div className='hover:bg-blue-500 py-1 px-2'>Edit</div>
             <div className='hover:bg-violet-500 py-1 px-2 text-[13px]'>Add Favourite</div>
             <div className='hover:bg-red-500 py-1 px-2'>Delete</div>
-          </div>
+          </div> */}
 
         </div>
 

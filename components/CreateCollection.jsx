@@ -66,7 +66,7 @@ const CreateCollection = ({ onclick }) => {
       <motion.div
         initial={{ scale: 0, translateX: '-50%' }}
         animate={{ scale: 1, translateX: '-50%' }}
-        className="w-full max-w-[32rem] bg-[#21212b] rounded-2xl border border-[#262633] top-28 fixed z-10 left-1/2 py-6 px-6"
+        className="w-full max-w-[32rem] bg-[#21212b] rounded-2xl border border-[#262633] top-28 fixed z-10 left-1/2 py-6 px-6 max-[625px]:bottom-0 max-[625px]:max-w-full max-[625px]:"
       >
         <div className="border-2 border-[#2d2d38] rounded-xl">
           <input

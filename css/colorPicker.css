@@ -23,3 +23,9 @@
   padding: 0 !important;
   margin-top: 16px;
 }
+
+@media screen and (max-width: 635px) {
+  .default-color-panel {
+    display: none !important;
+  }
+}
