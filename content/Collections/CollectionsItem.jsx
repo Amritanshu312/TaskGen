@@ -62,6 +62,16 @@ const CollectionsItem = ({
     });
   };
 
+  const generateUrl = (hashID, collectionName) => {
+    const encryptedName = encodeBase64ToUrlSafe(encryptSentence(collectionName));
+    const encryptedNameWithKey = encodeBase64ToUrlSafe(encryptSentence(collectionName, "2BqQPTp9AFXWJLl5L2oYyR"));
+    const encryptedNameWithKey2 = encodeBase64ToUrlSafe(encryptSentence(collectionName, "4a85eb8300c5679e8d3a0461b8ed834d"));
+    const encryptedNameWithKeyreconfirm = encodeBase64ToUrlSafe(encryptSentence(collectionName, "18585412F2QWuZDSTmxW7Ts8W"));
+
+    return `/project/${hashID}?n=${encryptedName}&c=${encryptedNameWithKey}&cf=${encryptedNameWithKey2}&pl=${encryptedNameWithKeyreconfirm}`;
+  };
+
+
   return (
     <>
       <motion.div
@@ -103,7 +113,7 @@ const CollectionsItem = ({
 
         <div className="flex justify-between items-end">
           <div className="gap-2 flex flex-col">
-            <Link href={`/project/${hashID}?n=${encodeBase64ToUrlSafe(encryptSentence(collectionName))}`} className="font-medium text-xl cursor-pointer line-clamp-1 text-ellipsis overflow-hidden max-w-[120px]" title={collectionName}>
+            <Link href={generateUrl(hashID, collectionName)} className="font-medium text-xl cursor-pointer line-clamp-1 text-ellipsis overflow-hidden max-w-[120px]" title={collectionName}>
               {collectionName}
             </Link>
 
