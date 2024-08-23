@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 import { useUserContext } from "@/context/UserInfo";
 import { toast } from 'react-toastify'
 import { createCollection } from "@/utils/CollectionsHandling";
-import ColorPicker from "./colorPicker";
+import ColorPicker from "../colorPicker";
 
 const CreateCollection = ({ onclick }) => {
   const [title, setTitle] = useState("");

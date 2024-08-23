@@ -1,6 +1,5 @@
 "use client"
-
-import CreateCollection from "@/components/CreateCollection";
+import CreateCollection from "@/components/Collection/CreateCollection";
 import { useState } from "react";
 import { FiPlus } from "react-icons/fi";
 

@@ -10,7 +10,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
 import Profile from "@/components/Profile";
-import CreateCollection from "@/components/CreateCollection";
 
 const Navbar = () => {
   const pathname = usePathname()
