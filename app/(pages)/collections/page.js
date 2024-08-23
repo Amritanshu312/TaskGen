@@ -1,6 +1,10 @@
 import CollectionsSection from "@/content/Collections/Collections"
 import { BsThreeDots } from "react-icons/bs"
 
+export const metadata = {
+  title: "TaskGen - Collections",
+};
+
 const Collections = () => {
   return (
     <div className="w-full min-h-screen flex">
