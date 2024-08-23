@@ -10,7 +10,8 @@ const EditCollection = ({
   onclick,
   addedcolor,
   addedTitle,
-  hash
+  hash,
+  favourite
 }) => {
   const [title, setTitle] = useState(addedTitle);
   const [color, setColor] = useState(addedcolor)
@@ -37,7 +38,7 @@ const EditCollection = ({
       }
 
       toast.promise(
-        editCollectionData(userInfo, title, color, hash),
+        editCollectionData(userInfo, title, color, hash, favourite),
         {
           pending: "Saving Collection...",
           success: "Collection Edited successfully!",
@@ -54,7 +55,8 @@ const EditCollection = ({
           const updatedItem = {
             ...item,
             collectionColor: color,
-            collectionName: title
+            collectionName: title,
+            favourites: favourite === true || false
           };
 
           // Update only the specific item

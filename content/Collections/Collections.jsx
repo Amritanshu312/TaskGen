@@ -43,7 +43,7 @@ const CollectionsSection = () => {
         initial="hidden"
         animate="show"
       >
-        {collectionsData.map((i, _) => <Fragment key={_}><CollectionsItem {...i} /></Fragment>)}
+        {collectionsData.map((i, _) => <Fragment key={_}><CollectionsItem {...i} userInfo={i} /></Fragment>)}
         <Create />
       </motion.div>
 

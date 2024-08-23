@@ -43,7 +43,7 @@ export const createCollection = async (userInfo, collectionName, Iconcolor, hash
 };
 
 
-export const editCollectionData = async (userInfo, collectionName, Iconcolor, hash) => {
+export const editCollectionData = async (userInfo, collectionName, Iconcolor, hash, favourites) => {
   if (!userInfo || typeof userInfo !== 'object') {
     throw new Error("Invalid userInfo object provided.");
   }
@@ -70,6 +70,7 @@ export const editCollectionData = async (userInfo, collectionName, Iconcolor, ha
       collectionName: collectionName.trim(),
       collectionColor: Iconcolor || color,
       updatedAt: serverTimestamp(),
+      favourites: favourites || false
     });
 
     return "success";

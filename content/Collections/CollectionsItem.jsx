@@ -2,16 +2,19 @@ import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { motion } from "framer-motion"
 import { BsThreeDots } from "react-icons/bs";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import EditCollection from '@/components/Collection/EditCollection';
+import { editCollectionData } from '@/utils/CollectionsHandling';
 
 const CollectionsItem = ({
   collectionColor,
   collectionName,
   createdAt,
   hashID,
+  favourites,
   taskFinished,
-  totalTasks
+  totalTasks,
+  userInfo
 }) => {
   const bgcolor = collectionColor || "#fa76a0"
   const totalTask = totalTasks || 0
@@ -21,6 +24,12 @@ const CollectionsItem = ({
   // usestate hook calls
   const [isToggled, setIsToggled] = useState(false)
   const [isCollectionEditOpened, setIsCollectionEditOpened] = useState(false)
+  const [isFav, setIsFav] = useState(favourites === true || false)
+
+  useEffect(() => {
+    editCollectionData(userInfo, title, bgcolor, hashID, isFav)
+    setIsToggled(false)
+  }, [isFav])
 
   return (
     <>
@@ -35,13 +44,15 @@ const CollectionsItem = ({
             <div className='hover:text-white' onClick={() => setIsToggled(prev => !prev)}><BsThreeDots /></div>
 
             {isToggled &&
-              <div className='absolute w-max top-6 left-0 bg-[#414051] rounded-md text-sm overflow-hidden'>
+              <div className='absolute w-max top-6 right-0 bg-[#414051] rounded-md text-sm overflow-hidden'>
                 <div className='hover:bg-blue-500 py-1 px-2' onClick={() => {
                   setIsCollectionEditOpened(prev => !prev)
                   setIsToggled(false)
                 }}>Edit</div>
 
-                <div className='hover:bg-violet-500 py-1 px-2 text-[13px]'>Add Favourite</div>
+                <div className='hover:bg-violet-500 py-1 px-2 text-[13px]' onClick={() => setIsFav(prev => !prev)}
+                >{isFav ? 'remove' : 'Add'} Favourite</div>
+
                 <div className='hover:bg-red-500 py-1 px-2'>Delete</div>
               </div>}
 
@@ -79,6 +90,7 @@ const CollectionsItem = ({
           addedcolor={bgcolor}
           hash={hashID}
           onclick={setIsCollectionEditOpened}
+          favourite={favourites === true || false}
         />
       }
     </>
