@@ -11,7 +11,6 @@ import { useUserContext } from '@/context/UserInfo';
 const CollectionsItem = ({
   collectionColor = "#fa76a0",
   collectionName = "General",
-  createdAt,
   hashID,
   favourites,
   taskFinished = 0,

@@ -11,7 +11,6 @@ import { useUserContext } from "@/context/UserInfo"
 const CollectionsSection = () => {
   const { collectionsData } = useUserContext()
 
-  console.log(collectionsData);
 
   const [active, setActive] = useState("All Collections")
   const allCollections = ["Favourites", "All Collections"]
@@ -33,6 +32,7 @@ const CollectionsSection = () => {
 
       <motion.div
         className="mt-10 mb-24 grid grid-cols-[repeat(auto-fit,minmax(170px,1fr))] gap-[20px]"
+        key={active}
         variants={{
           hidden: { opacity: 0 },
           show: {
