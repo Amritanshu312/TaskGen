@@ -11,6 +11,8 @@ import { useUserContext } from "@/context/UserInfo"
 const CollectionsSection = () => {
   const { collectionsData } = useUserContext()
 
+  console.log(collectionsData);
+
   const [active, setActive] = useState("All Collections")
   const allCollections = ["Favourites", "All Collections"]
 
@@ -43,7 +45,14 @@ const CollectionsSection = () => {
         initial="hidden"
         animate="show"
       >
-        {collectionsData.map((i, _) => <Fragment key={_}><CollectionsItem {...i} userInfo={i} /></Fragment>)}
+        {(active === "All Collections" ?
+          collectionsData :
+          collectionsData.filter(item => item?.favourites === true)
+        )
+          .map((i, _) =>
+            <Fragment key={_}><CollectionsItem {...i} userInfo={i} /></Fragment>
+          )}
+
         <Create />
       </motion.div>
 
