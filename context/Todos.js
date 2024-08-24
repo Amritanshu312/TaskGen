@@ -1,5 +1,7 @@
 "use client";
-import { createContext, useContext, useMemo } from "react";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import { useUserContext } from "./UserInfo";
+import { getTaskInsideColl } from "@/utils/TaskHandling";
 
 export const todoContext = createContext();
 
@@ -8,10 +10,30 @@ export const TodoState = ({
   TodoId
 }) => {
 
-  const contextValue = useMemo(() => ({
+  const { userInfo } = useUserContext()
 
+  const [Tasks, setTasks] = useState([])
+
+  useEffect(() => {
+    const fetchTasks = async () => {
+      const Tasks = await getTaskInsideColl(TodoId)
+      setTasks(Tasks);
+    }
+
+    if (!userInfo?.loading && !userInfo?.uid) {
+      fetchTasks()
+    }
+  }, [])
+
+  const contextValue = useMemo(() => ({
+    TodoId,
+    Tasks,
+    setTasks,
   }),
     [
+      TodoId,
+      Tasks,
+      setTasks
     ]);
 
   return (

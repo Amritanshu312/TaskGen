@@ -23,8 +23,10 @@ const Project = ({
 
             <AddTask />
 
-            <div className="mt-10 ml-1">
-              <Tasks />
+            <div className="mt-10 ml-1 flex flex-col gap-10">
+              <Tasks status={"start"} />
+              <Tasks status={"complete"} />
+              <Tasks status={"pending"} />
             </div>
 
           </TodoState>
