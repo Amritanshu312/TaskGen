@@ -1,7 +1,7 @@
+import Loader from "@/components/status/Loading"
+
 const Loading = () => {
-  return (
-    <div className="text-[46px]">Loading</div>
-  )
+  return <Loader />
 }
 
 export default Loading

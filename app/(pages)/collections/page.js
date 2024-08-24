@@ -7,6 +7,7 @@ export const metadata = {
 
 const Collections = () => {
   return (
+
     <div className="w-full min-h-screen flex">
 
       <div className="w-full mt-28 max-[635px]:mt-12 flex items-center flex-col max-[745px] mx-4">
