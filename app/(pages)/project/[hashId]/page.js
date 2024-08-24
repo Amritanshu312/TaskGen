@@ -1,5 +1,6 @@
 import AddTask from "@/content/Project/AddTask"
 import Title from "@/content/Project/components/Title"
+import Tasks from "@/content/Project/Tasks/Tasks"
 import { TodoState } from "@/context/Todos"
 import { BsThreeDots } from "react-icons/bs"
 
@@ -21,6 +22,10 @@ const Project = ({
           <TodoState TodoId={todoId}>
 
             <AddTask />
+
+            <div className="mt-10 ml-1">
+              <Tasks />
+            </div>
 
           </TodoState>
 
