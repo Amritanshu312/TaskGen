@@ -20,10 +20,10 @@ export const TodoState = ({
       setTasks(Tasks);
     }
 
-    if (!userInfo?.loading && !userInfo?.uid) {
+    if (!userInfo?.loading && userInfo?.uid) {
       fetchTasks()
     }
-  }, [])
+  }, [TodoId, userInfo])
 
   const contextValue = useMemo(() => ({
     TodoId,

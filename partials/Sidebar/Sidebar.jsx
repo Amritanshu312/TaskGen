@@ -40,7 +40,7 @@ const Sidebar = () => {
           .map((d, _) =>
             <motion.div
               key={_}
-              variants={{ hidden: { opacity: 0, scale: 0 }, show: { opacity: 1, scale: 1 } }}
+              variants={{ hidden: { opacity: 0}, show: { opacity: 1} }}
             >
               <Link href={generateUrl(d?.hashID, d?.collectionName)} className="flex items-center gap-2 cursor-pointer">
                 <div className="w-8 h-8 rounded-xl flex items-center justify-center text-lg" style={{ backgroundColor: d?.collectionColor || 'skyblue' }}>{(d?.collectionName || "").slice(0, 1).toUpperCase()}</div>

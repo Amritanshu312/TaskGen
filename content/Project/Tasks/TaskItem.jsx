@@ -1,8 +1,8 @@
 "use client"
 import { useTodoContext } from "@/context/Todos";
 import { updateStatusInsideTaskInsideColl } from "@/utils/TaskHandling";
-import { IoIosArrowUp } from "react-icons/io";
-import { MdOutlineCalendarMonth } from "react-icons/md";
+import clsx from "clsx";
+import { PiDotsThreeOutlineFill } from "react-icons/pi";
 import { toast } from "react-toastify";
 
 
@@ -13,7 +13,8 @@ const TaskItem = ({
   finishDate,
   id,
   title,
-  status
+  status,
+  iscompleted
 }) => {
   const { setTasks } = useTodoContext()
 
@@ -46,16 +47,23 @@ const TaskItem = ({
 
 
   return (
-    <div className="w-full bg-[#21212b] rounded-2xl overflow-hidden">
+    <div className="w-full bg-[#21212b] rounded-2xl overflow-hidden flex justify-between relativ">
 
-      <div className="flex items-center gap-4 px-4 py-3">
-        <div className="border-[3px] border-[#ec7fab] rounded-lg w-6 h-6 cursor-pointer" onClick={updateTasksStatus}></div>
+      <div className="flex items-center gap-4 px-4 py-3 w-[90%]">
+        <div className={clsx("border-[3px] border-[#ec7fab] rounded-lg min-w-6 h-6 cursor-pointer", { "p-1": iscompleted })} onClick={updateTasksStatus}>
+          {iscompleted && <div className="bg-[#ec7fab] w-full h-full rounded-lg"></div>}
+        </div>
 
-        <div className="font-['poppins'] text-[#dfdfe2] text-[17px]">{title}</div>
+        <div className={
+          clsx(
+            "font-['poppins'] text-[#dfdfe2] text-[17px] line-clamp-1 w-full",
+            { "line-through": iscompleted }
+          )}>{title}</div>
 
       </div>
 
-      {/* <div className="flex items-center gap-2 font-['poppins'] font-medium ml-[54px]"><MdOutlineCalendarMonth /> <span className="text-[#3ec1bf] text-[15px]">Monday</span></div> */}
+      <div className="w-16 h-full bg-red-900"><PiDotsThreeOutlineFill /></div>
+
 
     </div>
 
